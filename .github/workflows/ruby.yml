@@ -34,8 +34,11 @@ jobs:
         
     - name: Set up Enviroment
       run: | 
-            sh ./init.sh
+            sh ./setup.sh
+    - name: Set up Database
+      run: | 
+            sh ./database.sh
       
-    - name: Run tests
-      run: bundle exec rake
+    # - name: Run tests
+    #   run: bundle exec rake
      
