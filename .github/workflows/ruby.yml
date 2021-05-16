@@ -34,7 +34,7 @@ jobs:
         
     - name: Set up Enviroment
       run: | 
-            sh ./setup.sh
+            sh ./init.sh
       
     - name: Run tests
       run: bundle exec rake
