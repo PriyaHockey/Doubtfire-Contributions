@@ -228,7 +228,16 @@ install_dfire_dependencies () {
     bundler install --without production replica staging
     rbenv rehash
     source ~/.bashrc
-
+    bundle update rake
+    bundle install
+   
+}
+#
+# Installing Postgress and Popluate Database
+#
+popultate_database()
+{
+    install_postgres
     msg "Populating database"
     bundle exec rake db:create
     bundle exec rake db:populate
@@ -240,19 +249,25 @@ install_dfire_dependencies () {
 
     verbose "populated database"
 }
-
 #
 # Install Overcommit and DSTIL hooks.
 #
 install_dstil_overcommit () {
 
-    gem install overcommit -v 0.47.0
+    sudo gem install overcommit -v 0.47.0
     rbenv rehash
-    overcommit --install
+    sudo overcommit --install
 
     verbose "Installed overcommit hooks."
 }
-
+#
+# install gem bundler
+#
+install_gem()
+{
+  sudo install gem bundler
+  verbose "Installed Gem Bundler"
+}
 #
 # Install LaTeX.
 #
@@ -282,14 +297,17 @@ if is_mac; then
     install_homebrew
 fi
 
+install_dfire_dependencies
 install_native_tools
 install_rbenv
 install_postgres
 install_dstil_overcommit
-install_dfire_dependencies
 install_latex
 
-msg "You should now be able to launch the server with bundle exec rails s"
-verbose "Doubtfire should be successfuly Installed!"
-
-exec $SHELL
+# msg "You should now be able to launch the server with bundle exec rails s"
+# verbose "Doubtfire should be successfuly Installed!"
+# source ./database.sh
+# chmod +x database.sh
+# gnome-terminal -x ./database.sh
+gnome-terminal --tab --title="Populate Database" -e 'sh ./database.sh'
+# exec $SHELL
