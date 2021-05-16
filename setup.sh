@@ -309,5 +309,5 @@ install_latex
 # source ./database.sh
 # chmod +x database.sh
 # gnome-terminal -x ./database.sh
-gnome-terminal --tab --title="Populate Database" -e 'sh ./database.sh'
+# gnome-terminal --tab --title="Populate Database" -e 'sh ./database.sh'
 # exec $SHELL
